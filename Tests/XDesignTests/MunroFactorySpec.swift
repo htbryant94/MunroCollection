@@ -11,7 +11,6 @@ class MunroFactorySpec: QuickSpec {
                 CSVParser.parseFile("Sources/Resources/munrotab_v6.2.csv") { result in
                     switch result {
                     case let .success(rows):
-                        print(rows)
                         sut = MunroFactory(rows: rows)
                     default: break
                     }
