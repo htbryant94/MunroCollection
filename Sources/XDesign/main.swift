@@ -8,7 +8,12 @@ CSVParser.parseFile("Sources/Resources/munrotab_v6.2.csv") { result in
         let munros = MunroFactory(rows: data).makeMunros()
         print("number of valid munros: \(munros.count)")
         
-        let munroTops = MunroFilter.byHillCategory(munros: munros, hillCategory: .munroTop)
+        let munroTops = MunroFilter.byHillCategory(
+            munros: munros,
+            hillCategory: .munroTop,
+            limit: 10
+        )
+        
         print("number of Munro Tops: \(munroTops.count)")
         
         let munrosSortedByName = MunroSort.byName(munros: munros)
