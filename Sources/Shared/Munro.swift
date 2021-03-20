@@ -1,8 +1,8 @@
-public struct Munro {
+public struct Munro: Equatable {
     let name: String
     let hillCategory: HillCategory
     
-    enum HillCategory: String {
+    public enum HillCategory: String {
         case munro = "MUN"
         case munroTop = "TOP"
     }
