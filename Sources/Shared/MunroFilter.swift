@@ -15,16 +15,20 @@ public struct MunroFilter {
     
     public static func byHeight(
         munros: [Munro],
-        min: Double = 0,
+        min: Double?,
         max: Double?,
         limit: Int? = nil
     ) -> [Munro] {
-        var filteredMunros = munros.filter { $0.height >= min }
+        var results = munros
         
-        if let max = max {
-            filteredMunros = filteredMunros.filter { $0.height <= max }
+        if let min = min {
+            results = munros.filter { $0.height >= min }
         }
         
-        return filteredMunros.limit(limit ?? munros.count)
+        if let max = max {
+            results = results.filter { $0.height <= max }
+        }
+        
+        return results.limit(limit ?? munros.count)
     }
 }

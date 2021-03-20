@@ -153,7 +153,7 @@ class MunroFilterSpec: QuickSpec {
                             .make(name: "Echo", hillCategory: .munroTop, height: 10),
                         ]
                         
-                        actual = Filter.byHeight(munros: data, max: nil)
+                        actual = Filter.byHeight(munros: data, min: nil, max: nil)
                     }
                     
                     it("should return correct number of matching items") {
@@ -187,7 +187,7 @@ class MunroFilterSpec: QuickSpec {
                             .make(name: "Echo", hillCategory: .munroTop, height: 10),
                         ]
                         
-                        actual = Filter.byHeight(munros: data, max: 100)
+                        actual = Filter.byHeight(munros: data, min: nil, max: 100)
                     }
                     
                     it("should return correct number of matching items") {
