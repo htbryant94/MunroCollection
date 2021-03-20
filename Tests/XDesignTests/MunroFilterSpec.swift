@@ -7,11 +7,11 @@ class MunroFilterSpec: QuickSpec {
         describe("MunroFilter") {
             typealias Filter = MunroFilter
             let data: [Munro] = [
-                .init(name: "one", hillCategory: .munro),
-                .init(name: "two", hillCategory: .munro),
-                .init(name: "three", hillCategory: .munroTop),
-                .init(name: "four", hillCategory: .munro),
-                .init(name: "five", hillCategory: .munroTop),
+                .make(hillCategory: .munro),
+                .make(hillCategory: .munro),
+                .make(hillCategory: .munroTop),
+                .make(hillCategory: .munro),
+                .make(hillCategory: .munroTop),
             ]
             
             context("Filter by hill category") {
@@ -21,9 +21,9 @@ class MunroFilterSpec: QuickSpec {
                 context("when filtering for Munros") {
                     beforeEach {
                         expected = [
-                            .init(name: "one", hillCategory: .munro),
-                            .init(name: "two", hillCategory: .munro),
-                            .init(name: "four", hillCategory: .munro),
+                            .make(hillCategory: .munro),
+                            .make(hillCategory: .munro),
+                            .make(hillCategory: .munro),
                         ]
                         actual = Filter.byHillCategory(munros: data, hillCategory: .munro)
                     }
@@ -36,8 +36,8 @@ class MunroFilterSpec: QuickSpec {
                 context("when filtering for Munro Tops") {
                     beforeEach {
                         expected = [
-                            .init(name: "three", hillCategory: .munroTop),
-                            .init(name: "five", hillCategory: .munroTop),
+                            .make(hillCategory: .munroTop),
+                            .make(hillCategory: .munroTop),
                         ]
                         actual = Filter.byHillCategory(munros: data, hillCategory: .munroTop)
                     }

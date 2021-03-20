@@ -1,6 +1,7 @@
 public struct Munro: Equatable {
     public let name: String
     public let hillCategory: HillCategory
+    public let height: Double
     
     public enum HillCategory: String {
         case munro = "MUN"

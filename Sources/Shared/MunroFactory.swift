@@ -12,6 +12,7 @@ public class MunroFactory {
     private enum ColumnHeader: Int {
         case name = 6
         case post1997 = 28
+        case heightMetres = 10
         
         var index: Int {
             return rawValue
@@ -19,10 +20,14 @@ public class MunroFactory {
     }
     
     private func makeMunro(columns: [String]) -> Munro? {
-        guard let hillCategory = Munro.HillCategory(rawValue: columns[ColumnHeader.post1997.index]) else { return nil }
+        guard
+            let hillCategory = Munro.HillCategory(rawValue: columns[ColumnHeader.post1997.index]),
+            let height = Double(columns[ColumnHeader.heightMetres.index]) else { return nil }
+        
         return .init(
             name: columns[ColumnHeader.name.index],
-            hillCategory: hillCategory
+            hillCategory: hillCategory,
+            height: height
         )
     }
     

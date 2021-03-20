@@ -19,8 +19,24 @@ class MunroFactorySpec: QuickSpec {
             }
             
             context("parsing munros") {
+                var actualMunros: [Munro]!
+                var expectedFirstMunro: Munro!
+     
+                beforeEach {
+                    actualMunros = sut.makeMunros()
+                    expectedFirstMunro = Munro(
+                        name: "Ben Chonzie",
+                        hillCategory: .munro,
+                        height: 931
+                    )
+                }
+                
                 it("should return correct number of Munros based off Post 1997 column") {
-                    expect(sut.makeMunros().count) == 509
+                    expect(actualMunros.count) == 509
+                }
+                
+                it("should have correct values") {
+                    expect(actualMunros.first) == expectedFirstMunro
                 }
             }
         }
