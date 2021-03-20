@@ -1,6 +1,9 @@
 public struct Munro {
-    let runningNo: Int
-    let DoBIHNumber: Int
-    let streetMap: String
-    let geograph: String
+    let name: String
+    let hillCategory: HillCategory
+    
+    enum HillCategory: String {
+        case munro = "MUN"
+        case munroTop = "TOP"
+    }
 }

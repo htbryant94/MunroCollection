@@ -1,12 +1,22 @@
 import Foundation
 
 public struct CSVParser {
-    public static func parseFile(_ filePath: String, completionHandler: @escaping (Result<String, Error>) -> Void) {
+    public static func parseFile(_ filePath: String, completionHandler: @escaping (Result<[String], Error>) -> Void) {
         do {
             let fileContents = try String(contentsOfFile: filePath, encoding: .ascii)
-            return completionHandler(.success(fileContents))
+            let rows = parseRows(fileContents: fileContents)
+            return completionHandler(.success(rows))
+            
+            
         } catch {
             return completionHandler(.failure(error))
         }
+    }
+    
+    private static func parseRows(fileContents: String) -> [String] {
+        var rows = fileContents.components(separatedBy: "\n")
+        rows.removeFirst() // Remove Headers
+        rows.removeSubrange(603...610) // Remove Empty Rows
+        return rows
     }
 }
