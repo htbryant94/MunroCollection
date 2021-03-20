@@ -1,3 +1,5 @@
+import Foundation
+
 public class MunroService {
     typealias Filter = MunroFilter
     typealias Sort = MunroSort
@@ -11,11 +13,25 @@ public class MunroService {
     
     public func fetch(
         _ data: [Munro],
-        sortType: SortType,
+        sortType: SortType = .name(.ascending),
         hillCategory: Munro.HillCategory? = nil,
         minHeight: Double? = nil,
-        maxHeight: Double? = nil
-    ) -> [Munro] {
+        maxHeight: Double? = nil,
+        completionHandler: @escaping (Result<[Munro], Error>) -> Void
+    ) {
+        if let minHeight = minHeight,
+           let maxHeight = maxHeight,
+           minHeight >= maxHeight {
+            let error = NSError(
+                domain: "MunroServiceDomain",
+                code: 123,
+                userInfo: [
+                    NSLocalizedDescriptionKey: "minHeight cannot be greater than or equal to maxHeight"
+                ]
+            )
+            return completionHandler(.failure(error))
+        }
+        
         var results = data
         
         if let hillCategory = hillCategory {
@@ -36,6 +52,6 @@ public class MunroService {
             results = Sort.byHeight(munros: results, orderBy: direction)
         }
         
-        return results
+        return completionHandler(.success(results))
     }
 }
