@@ -8,19 +8,12 @@ CSVParser.parseFile("Sources/Resources/munrotab_v6.2.csv") { result in
         let munros = MunroFactory(rows: data).makeMunros()
         print("number of valid munros: \(munros.count)")
         
-        let munroTops = MunroFilter.byHillCategory(
-            munros: munros,
-            hillCategory: .munroTop,
-            limit: 10
+        let results = MunroService().fetch(
+            munros,
+            sortType: .name(.ascending),
+            hillCategory: .munroTop
         )
-        
-        print("number of Munro Tops: \(munroTops.count)")
-        
-        let munrosSortedByName = MunroSort.byName(munros: munros)
-        print("--- Sorted by ascending order ---")
-        print("First: \(munrosSortedByName[0].name)")
-        print("Last: \(munrosSortedByName.last!.name)")
-        
+        print("results from service: \(results.count)")
         
     case let .failure(error):
         print("parse failure: \(error)")
