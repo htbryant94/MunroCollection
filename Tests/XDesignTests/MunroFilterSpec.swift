@@ -114,6 +114,87 @@ class MunroFilterSpec: QuickSpec {
                     }
                 }
             }
+            
+            context("Filtering by height") {
+                let data: [Munro] = [
+                    .make(name: "Alpha", hillCategory: .munro, height: 1),
+                    .make(name: "Bravo", hillCategory: .munro, height: 1000),
+                    .make(name: "Charlie", hillCategory: .munroTop, height: 37.5),
+                    .make(name: "Delta", hillCategory: .munro, height: 56),
+                    .make(name: "Echo", hillCategory: .munroTop, height: 10),
+                ]
+                
+                var actual: [Munro]!
+                var expected: [Munro]!
+                
+                context("with minimum & maximum specified") {
+                    beforeEach {
+                        expected = [
+                            .make(name: "Charlie", hillCategory: .munroTop, height: 37.5),
+                            .make(name: "Delta", hillCategory: .munro, height: 56),
+                            .make(name: "Echo", hillCategory: .munroTop, height: 10),
+                        ]
+                        
+                        actual = Filter.byHeight(munros: data, min: 5, max: 100)
+                    }
+                    
+                    it("should return correct number of matching items") {
+                        expect(actual) == expected
+                    }
+                }
+                
+                context("none specified") {
+                    beforeEach {
+                        expected = [
+                            .make(name: "Alpha", hillCategory: .munro, height: 1),
+                            .make(name: "Bravo", hillCategory: .munro, height: 1000),
+                            .make(name: "Charlie", hillCategory: .munroTop, height: 37.5),
+                            .make(name: "Delta", hillCategory: .munro, height: 56),
+                            .make(name: "Echo", hillCategory: .munroTop, height: 10),
+                        ]
+                        
+                        actual = Filter.byHeight(munros: data, max: nil)
+                    }
+                    
+                    it("should return correct number of matching items") {
+                        expect(actual) == expected
+                    }
+                }
+                
+                context("only minimum specified") {
+                    beforeEach {
+                        expected = [
+                            .make(name: "Bravo", hillCategory: .munro, height: 1000),
+                            .make(name: "Charlie", hillCategory: .munroTop, height: 37.5),
+                            .make(name: "Delta", hillCategory: .munro, height: 56),
+                            .make(name: "Echo", hillCategory: .munroTop, height: 10),
+                        ]
+                        
+                        actual = Filter.byHeight(munros: data, min: 5, max: nil)
+                    }
+                    
+                    it("should return correct number of matching items") {
+                        expect(actual) == expected
+                    }
+                }
+                
+                context("only maximum specified") {
+                    beforeEach {
+                        expected = [
+                            .make(name: "Alpha", hillCategory: .munro, height: 1),
+                            .make(name: "Charlie", hillCategory: .munroTop, height: 37.5),
+                            .make(name: "Delta", hillCategory: .munro, height: 56),
+                            .make(name: "Echo", hillCategory: .munroTop, height: 10),
+                        ]
+                        
+                        actual = Filter.byHeight(munros: data, max: 100)
+                    }
+                    
+                    it("should return correct number of matching items") {
+                        expect(actual) == expected
+                    }
+                }
+            }
         }
     }
 }
