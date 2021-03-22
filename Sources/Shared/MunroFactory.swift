@@ -1,11 +1,11 @@
-public class MunroFactory {
+class MunroFactory {
     private let rows: [String]
    
-    public init(rows: [String]) {
+    init(rows: [String]) {
         self.rows = rows
     }
     
-    public func makeMunros() -> [Munro] {
+    func makeMunros() -> [Munro] {
         return rows.compactMap { makeMunro(columns: parseColumnsFrom(row: $0)) }
     }
     

@@ -6,7 +6,8 @@ MunroCollection().get(
     hillCategory: .munro,
     minHeight: 500,
     maxHeight: 2000,
-    limit: 0) { result in
+    limit: nil
+) { result in
     switch result {
     case let .success(munros):
         print("successfully returned munros: \(munros.count)")

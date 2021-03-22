@@ -9,7 +9,7 @@ public struct MunroSort {
         case height(MunroSort.Direction)
     }
     
-    public static func byName(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
+    static func byName(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
         switch orderBy {
         case .ascending:
             return munros.sorted { $0.name < $1.name }
@@ -18,7 +18,7 @@ public struct MunroSort {
         }
     }
     
-    public static func byHeight(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
+    static func byHeight(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
         switch orderBy {
         case .ascending:
             return munros.sorted { $0.height < $1.height }

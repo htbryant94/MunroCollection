@@ -1,16 +1,16 @@
 import Foundation
 
-public class MunroService {
+class MunroService {
     typealias Filter = MunroFilter
     typealias Sort = MunroSort
     
     private let munros: [Munro]
     
-    public init(munros: [Munro]) {
+    init(munros: [Munro]) {
         self.munros = munros
     }
     
-    public func fetch(
+    func fetch(
         sortType: MunroSort.SortType = .name(.ascending),
         hillCategory: Munro.HillCategory? = nil,
         minHeight: Double? = nil,
@@ -26,7 +26,7 @@ public class MunroService {
             min >= max {
             return completionHandler(.failure(minMaxHeightError))
         }
-
+        
         var results = munros
         
         if let hillCategory = hillCategory {

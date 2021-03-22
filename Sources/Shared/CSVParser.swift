@@ -1,7 +1,7 @@
 import Foundation
 
-public struct CSVParser {
-    public static func parseFile(_ filePath: String, completionHandler: @escaping (Result<[String], Error>) -> Void) {
+struct CSVParser {
+    static func parseFile(_ filePath: String, completionHandler: @escaping (Result<[String], Error>) -> Void) {
         do {
             let fileContents = try String(contentsOfFile: filePath, encoding: .ascii)
             let rows = parseRows(fileContents: fileContents)
@@ -13,7 +13,7 @@ public struct CSVParser {
         }
     }
     
-    private static func parseRows(fileContents: String) -> [String] {
+    static func parseRows(fileContents: String) -> [String] {
         var rows = fileContents.components(separatedBy: "\n")
         rows.removeFirst() // Remove Headers
         rows.removeSubrange(603...610) // Remove Empty Rows
