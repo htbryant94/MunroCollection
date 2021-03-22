@@ -17,6 +17,7 @@ public class MunroService {
         hillCategory: Munro.HillCategory? = nil,
         minHeight: Double? = nil,
         maxHeight: Double? = nil,
+        limit: Int? = nil,
         completionHandler: @escaping (Result<[Munro], Error>) -> Void
     ) {
         if let minHeight = minHeight,
@@ -52,6 +53,6 @@ public class MunroService {
             results = Sort.byHeight(munros: results, orderBy: direction)
         }
         
-        return completionHandler(.success(results))
+        return completionHandler(.success(results.limit(limit ?? results.count)))
     }
 }

@@ -56,6 +56,58 @@ class MunroServiceSpec: QuickSpec {
                     it("should return expected list of Munros") {
                         expect(actual) == expected
                     }
+                    
+                    context("with limit") {
+                        context("below the results count") {
+                            beforeEach {
+                                expected = [
+                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .init(name: "Echo", hillCategory: .munro, height: 10),
+                                ]
+                                sut.fetch(data, limit: 5) { result in
+                                    switch result {
+                                    case let .success(result): actual = result
+                                    default: break
+                                    }
+                                }
+                            }
+                            
+                            it("should return correct number of Munros") {
+                                expect(actual) == expected
+                            }
+                        }
+                        
+                        context("above the results count") {
+                            beforeEach {
+                                expected = [
+                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .init(name: "Echo", hillCategory: .munro, height: 10),
+                                    .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .init(name: "Hotel", hillCategory: .munro, height: 500),
+                                    .init(name: "India", hillCategory: .munro, height: 99),
+                                    .init(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                ]
+                                sut.fetch(data, limit: 1000) { result in
+                                    switch result {
+                                    case let .success(result): actual = result
+                                    default: break
+                                    }
+                                }
+                            }
+                            
+                            it("should not limit the list of Munros") {
+                                expect(actual) == expected
+                            }
+                        }
+                       
+                    }
                 }
                 
                 context("invalid params") {
