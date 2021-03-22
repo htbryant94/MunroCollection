@@ -4,16 +4,14 @@ public class MunroService {
     typealias Filter = MunroFilter
     typealias Sort = MunroSort
     
-    public enum SortType {
-        case name(MunroSort.Direction)
-        case height(MunroSort.Direction)
+    private let munros: [Munro]
+    
+    public init(munros: [Munro]) {
+        self.munros = munros
     }
     
-    public init() {}
-    
     public func fetch(
-        _ data: [Munro],
-        sortType: SortType = .name(.ascending),
+        sortType: MunroSort.SortType = .name(.ascending),
         hillCategory: Munro.HillCategory? = nil,
         minHeight: Double? = nil,
         maxHeight: Double? = nil,
@@ -29,10 +27,10 @@ public class MunroService {
             return completionHandler(.failure(minMaxHeightError))
         }
 
-        var results = data
+        var results = munros
         
         if let hillCategory = hillCategory {
-            results = Filter.byHillCategory(munros: data, hillCategory: hillCategory)
+            results = Filter.byHillCategory(munros: results, hillCategory: hillCategory)
         }
         
         results = Filter.byHeight(munros: results, min: minHeight, max: maxHeight)

@@ -24,7 +24,7 @@ class MunroServiceSpec: QuickSpec {
             ]
             
             beforeEach {
-                sut = MunroService()
+                sut = MunroService(munros: data)
                 actual = nil
                 expected = nil
             }
@@ -37,7 +37,7 @@ class MunroServiceSpec: QuickSpec {
                     context("when results count is 0") {
                         beforeEach {
                             expected = "No results found, try expanding your search parameters"
-                            sut.fetch(data, minHeight: 10000) { result in
+                            sut.fetch(minHeight: 10000) { result in
                                 switch result {
                                 case let .failure(error): actual = error
                                 default:
@@ -55,7 +55,7 @@ class MunroServiceSpec: QuickSpec {
                         context("when max height is less than the minimum height") {
                             beforeEach {
                                 expected = "minHeight cannot be greater than or equal to maxHeight"
-                                sut.fetch(data, minHeight: 100, maxHeight: 50) { result in
+                                sut.fetch(minHeight: 100, maxHeight: 50) { result in
                                     switch result {
                                     case let .failure(error): actual = error
                                     default:
@@ -72,7 +72,7 @@ class MunroServiceSpec: QuickSpec {
                         context("when max height is less than the minimum height") {
                             beforeEach {
                                 expected = "minHeight cannot be greater than or equal to maxHeight"
-                                sut.fetch(data, minHeight: 100, maxHeight: 50) { result in
+                                sut.fetch(minHeight: 100, maxHeight: 50) { result in
                                     switch result {
                                     case let .failure(error): actual = error
                                     default:
@@ -89,7 +89,7 @@ class MunroServiceSpec: QuickSpec {
                         context("when min height is 0") {
                             beforeEach {
                                 expected = "minHeight cannot be 0"
-                                sut.fetch(data, minHeight: 0) { result in
+                                sut.fetch(minHeight: 0) { result in
                                     switch result {
                                     case let .failure(error): actual = error
                                     default:
@@ -120,7 +120,7 @@ class MunroServiceSpec: QuickSpec {
                             .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                         ]
                         
-                        sut.fetch(data) { result in
+                        sut.fetch() { result in
                             switch result {
                             case let .success(result): actual = result
                             default: break
@@ -142,7 +142,7 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                                     .make(name: "Echo", hillCategory: .munro, height: 10),
                                 ]
-                                sut.fetch(data, limit: 5) { result in
+                                sut.fetch(limit: 5) { result in
                                     switch result {
                                     case let .success(result): actual = result
                                     default: break
@@ -169,7 +169,7 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "India", hillCategory: .munro, height: 99),
                                     .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                                 ]
-                                sut.fetch(data, limit: 1000) { result in
+                                sut.fetch(limit: 1000) { result in
                                     switch result {
                                     case let .success(result): actual = result
                                     default: break
@@ -196,7 +196,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "India", hillCategory: .munro, height: 99),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .name(.ascending),
                                 hillCategory: .munro
                             ) { result in
@@ -219,7 +218,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.ascending),
                                     hillCategory: .munro,
                                     minHeight: 80
@@ -244,7 +242,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.ascending),
                                     hillCategory: .munro,
                                     maxHeight: 99
@@ -268,7 +265,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.ascending),
                                     hillCategory: .munro,
                                     minHeight: 20,
@@ -297,7 +293,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Alpha", hillCategory: .munro, height: 100),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .name(.descending),
                                 hillCategory: .munro
                             ) { result in
@@ -320,7 +315,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Alpha", hillCategory: .munro, height: 100),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.descending),
                                     hillCategory: .munro,
                                     minHeight: 80
@@ -345,7 +339,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.descending),
                                     hillCategory: .munro,
                                     maxHeight: 99
@@ -369,7 +362,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.descending),
                                     hillCategory: .munro,
                                     minHeight: 20,
@@ -398,7 +390,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Hotel", hillCategory: .munro, height: 500),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .height(.ascending),
                                 hillCategory: .munro
                             ) { result in
@@ -422,7 +413,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Hotel", hillCategory: .munro, height: 500),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.ascending),
                                     hillCategory: .munro,
                                     minHeight: 20
@@ -447,7 +437,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.ascending),
                                     hillCategory: .munro,
                                     maxHeight: 99
@@ -471,7 +460,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.ascending),
                                     hillCategory: .munro,
                                     minHeight: 20,
@@ -500,7 +488,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Echo", hillCategory: .munro, height: 10),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .height(.descending),
                                 hillCategory: .munro
                             ) { result in
@@ -524,7 +511,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.descending),
                                     hillCategory: .munro,
                                     minHeight: 20
@@ -549,7 +535,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Echo", hillCategory: .munro, height: 10),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.descending),
                                     hillCategory: .munro,
                                     maxHeight: 99
@@ -573,7 +558,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.descending),
                                     hillCategory: .munro,
                                     minHeight: 20,
@@ -604,7 +588,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .name(.ascending),
                                 hillCategory: .munroTop
                             ) { result in
@@ -627,7 +610,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.ascending),
                                     hillCategory: .munroTop,
                                     minHeight: 80
@@ -651,7 +633,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.ascending),
                                     hillCategory: .munroTop,
                                     maxHeight: 99
@@ -674,7 +655,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.ascending),
                                     hillCategory: .munroTop,
                                     minHeight: 20,
@@ -703,7 +683,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .name(.descending),
                                 hillCategory: .munroTop
                             ) { result in
@@ -726,7 +705,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.descending),
                                     hillCategory: .munroTop,
                                     minHeight: 80
@@ -750,7 +728,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.descending),
                                     hillCategory: .munroTop,
                                     maxHeight: 99
@@ -773,7 +750,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .name(.descending),
                                     hillCategory: .munroTop,
                                     minHeight: 20,
@@ -802,7 +778,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .height(.ascending),
                                 hillCategory: .munroTop
                             ) { result in
@@ -825,7 +800,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.ascending),
                                     hillCategory: .munroTop,
                                     minHeight: 80
@@ -849,7 +823,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.ascending),
                                     hillCategory: .munroTop,
                                     maxHeight: 99
@@ -872,7 +845,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.ascending),
                                     hillCategory: .munroTop,
                                     minHeight: 20,
@@ -901,7 +873,6 @@ class MunroServiceSpec: QuickSpec {
                                 .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                             ]
                             sut.fetch(
-                                data,
                                 sortType: .height(.descending),
                                 hillCategory: .munroTop
                             ) { result in
@@ -924,7 +895,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.descending),
                                     hillCategory: .munroTop,
                                     minHeight: 80
@@ -948,7 +918,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.descending),
                                     hillCategory: .munroTop,
                                     maxHeight: 99
@@ -971,7 +940,6 @@ class MunroServiceSpec: QuickSpec {
                                     .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
-                                    data,
                                     sortType: .height(.descending),
                                     hillCategory: .munroTop,
                                     minHeight: 20,

@@ -4,6 +4,11 @@ public struct MunroSort {
         case descending
     }
     
+    public enum SortType {
+        case name(MunroSort.Direction)
+        case height(MunroSort.Direction)
+    }
+    
     public static func byName(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
         switch orderBy {
         case .ascending:
