@@ -30,6 +30,81 @@ class MunroServiceSpec: QuickSpec {
             }
             
             context("fetch") {
+                context("invalid query") {
+                    var actual: Error!
+                    var expected: String!
+                    
+                    context("when results count is 0") {
+                        beforeEach {
+                            expected = "No results found, try expanding your search parameters"
+                            sut.fetch(data, minHeight: 10000) { result in
+                                switch result {
+                                case let .failure(error): actual = error
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                        
+                        it("should return error with appropriate localized description") {
+                            expect(actual.localizedDescription) == expected
+                        }
+                    }
+                    
+                    context("invalid params") {
+                        context("when max height is less than the minimum height") {
+                            beforeEach {
+                                expected = "minHeight cannot be greater than or equal to maxHeight"
+                                sut.fetch(data, minHeight: 100, maxHeight: 50) { result in
+                                    switch result {
+                                    case let .failure(error): actual = error
+                                    default:
+                                        break
+                                    }
+                                }
+                            }
+
+                            it("should return an error") {
+                                expect(actual.localizedDescription) == expected
+                            }
+                        }
+                        
+                        context("when max height is less than the minimum height") {
+                            beforeEach {
+                                expected = "minHeight cannot be greater than or equal to maxHeight"
+                                sut.fetch(data, minHeight: 100, maxHeight: 50) { result in
+                                    switch result {
+                                    case let .failure(error): actual = error
+                                    default:
+                                        break
+                                    }
+                                }
+                            }
+
+                            it("should return an error") {
+                                expect(actual.localizedDescription) == expected
+                            }
+                        }
+                        
+                        context("when min height is 0") {
+                            beforeEach {
+                                expected = "minHeight cannot be 0"
+                                sut.fetch(data, minHeight: 0) { result in
+                                    switch result {
+                                    case let .failure(error): actual = error
+                                    default:
+                                        break
+                                    }
+                                }
+                            }
+
+                            it("should return an error") {
+                                expect(actual.localizedDescription) == expected
+                            }
+                        }
+                    }
+                }
+                
                 context("default params") {
                     beforeEach {
                         expected = [
@@ -107,46 +182,6 @@ class MunroServiceSpec: QuickSpec {
                             }
                         }
                        
-                    }
-                }
-                
-                context("invalid params") {
-                    context("when max height is less than the minimum height") {
-                        var actual: Error!
-                        let expected = "minHeight cannot be greater than or equal to maxHeight"
-                        
-                        beforeEach {
-                            sut.fetch(data, minHeight: 100, maxHeight: 50) { result in
-                                switch result {
-                                case let .failure(error): actual = error
-                                default:
-                                    break
-                                }
-                            }
-                        }
-
-                        it("should return an error") {
-                            expect(actual.localizedDescription) == expected
-                        }
-                    }
-                    
-                    context("when max height is less than the minimum height") {
-                        var actual: Error!
-                        let expected = "minHeight cannot be greater than or equal to maxHeight"
-                        
-                        beforeEach {
-                            sut.fetch(data, minHeight: 100, maxHeight: 50) { result in
-                                switch result {
-                                case let .failure(error): actual = error
-                                default:
-                                    break
-                                }
-                            }
-                        }
-
-                        it("should return an error") {
-                            expect(actual.localizedDescription) == expected
-                        }
                     }
                 }
                 

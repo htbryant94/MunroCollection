@@ -7,7 +7,7 @@ public struct MunroFilter {
     public static func byHeight(munros: [Munro], min: Double?, max: Double?) -> [Munro] {
         var results = munros
         
-        if let min = min {
+        if let min = min, min > 0 {
             results = munros.filter { $0.height >= min }
         }
         
