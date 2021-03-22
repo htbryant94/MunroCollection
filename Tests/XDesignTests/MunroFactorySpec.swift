@@ -26,7 +26,8 @@ class MunroFactorySpec: QuickSpec {
                     expectedFirstMunro = Munro(
                         name: "Ben Chonzie",
                         hillCategory: .munro,
-                        height: 931
+                        height: 931,
+                        gridRef: "NN773308"
                     )
                 }
                 

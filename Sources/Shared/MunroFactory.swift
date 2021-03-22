@@ -13,6 +13,7 @@ public class MunroFactory {
         case name = 6
         case post1997 = 28
         case heightMetres = 10
+        case gridRef = 14
         
         var index: Int {
             return rawValue
@@ -27,7 +28,8 @@ public class MunroFactory {
         return .init(
             name: columns[ColumnHeader.name.index],
             hillCategory: hillCategory,
-            height: height
+            height: height,
+            gridRef: columns[ColumnHeader.gridRef.index]
         )
     }
     

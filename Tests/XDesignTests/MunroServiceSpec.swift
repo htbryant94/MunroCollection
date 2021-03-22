@@ -11,16 +11,16 @@ class MunroServiceSpec: QuickSpec {
             var expected: [Munro]!
             
             let data: [Munro] = [
-                .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                .init(name: "Echo", hillCategory: .munro, height: 10),
-                .init(name: "Charlie", hillCategory: .munro, height: 75),
-                .init(name: "Alpha", hillCategory: .munro, height: 100),
-                .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                .init(name: "India", hillCategory: .munro, height: 99),
-                .init(name: "Hotel", hillCategory: .munro, height: 500),
+                .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                .make(name: "Echo", hillCategory: .munro, height: 10),
+                .make(name: "Charlie", hillCategory: .munro, height: 75),
+                .make(name: "Alpha", hillCategory: .munro, height: 100),
+                .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                .make(name: "India", hillCategory: .munro, height: 99),
+                .make(name: "Hotel", hillCategory: .munro, height: 500),
             ]
             
             beforeEach {
@@ -33,16 +33,16 @@ class MunroServiceSpec: QuickSpec {
                 context("default params") {
                     beforeEach {
                         expected = [
-                            .init(name: "Alpha", hillCategory: .munro, height: 100),
-                            .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                            .init(name: "Charlie", hillCategory: .munro, height: 75),
-                            .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                            .init(name: "Echo", hillCategory: .munro, height: 10),
-                            .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                            .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                            .init(name: "Hotel", hillCategory: .munro, height: 500),
-                            .init(name: "India", hillCategory: .munro, height: 99),
-                            .init(name: "Juliet", hillCategory: .munroTop, height: 375),
+                            .make(name: "Alpha", hillCategory: .munro, height: 100),
+                            .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                            .make(name: "Charlie", hillCategory: .munro, height: 75),
+                            .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                            .make(name: "Echo", hillCategory: .munro, height: 10),
+                            .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                            .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                            .make(name: "Hotel", hillCategory: .munro, height: 500),
+                            .make(name: "India", hillCategory: .munro, height: 99),
+                            .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                         ]
                         
                         sut.fetch(data) { result in
@@ -61,11 +61,11 @@ class MunroServiceSpec: QuickSpec {
                         context("below the results count") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                    .init(name: "Echo", hillCategory: .munro, height: 10),
+                                    .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .make(name: "Echo", hillCategory: .munro, height: 10),
                                 ]
                                 sut.fetch(data, limit: 5) { result in
                                     switch result {
@@ -83,16 +83,16 @@ class MunroServiceSpec: QuickSpec {
                         context("above the results count") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                    .init(name: "Echo", hillCategory: .munro, height: 10),
-                                    .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                    .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                    .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .make(name: "Echo", hillCategory: .munro, height: 10),
+                                    .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                                 ]
                                 sut.fetch(data, limit: 1000) { result in
                                     switch result {
@@ -154,11 +154,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: name ascending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                .init(name: "Echo", hillCategory: .munro, height: 10),
-                                .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                .init(name: "India", hillCategory: .munro, height: 99),
+                                .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                .make(name: "Echo", hillCategory: .munro, height: 10),
+                                .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                .make(name: "India", hillCategory: .munro, height: 99),
                             ]
                             sut.fetch(
                                 data,
@@ -179,9 +179,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                    .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
                                     data,
@@ -204,9 +204,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "Echo", hillCategory: .munro, height: 10),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "Echo", hillCategory: .munro, height: 10),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
                                     data,
@@ -229,8 +229,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
                                     data,
@@ -255,11 +255,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: name descending") {
                         beforeEach {
                             expected = [
-                                .init(name: "India", hillCategory: .munro, height: 99),
-                                .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                .init(name: "Echo", hillCategory: .munro, height: 10),
-                                .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                .init(name: "Alpha", hillCategory: .munro, height: 100),
+                                .make(name: "India", hillCategory: .munro, height: 99),
+                                .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                .make(name: "Echo", hillCategory: .munro, height: 10),
+                                .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                .make(name: "Alpha", hillCategory: .munro, height: 100),
                             ]
                             sut.fetch(
                                 data,
@@ -280,9 +280,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                    .make(name: "Alpha", hillCategory: .munro, height: 100),
                                 ]
                                 sut.fetch(
                                     data,
@@ -305,9 +305,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Echo", hillCategory: .munro, height: 10),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Echo", hillCategory: .munro, height: 10),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
                                     data,
@@ -330,8 +330,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
                                     data,
@@ -356,11 +356,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: height ascending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Echo", hillCategory: .munro, height: 10),
-                                .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                .init(name: "India", hillCategory: .munro, height: 99),
-                                .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                .init(name: "Hotel", hillCategory: .munro, height: 500),
+                                .make(name: "Echo", hillCategory: .munro, height: 10),
+                                .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                .make(name: "India", hillCategory: .munro, height: 99),
+                                .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                .make(name: "Hotel", hillCategory: .munro, height: 500),
                             ]
                             sut.fetch(
                                 data,
@@ -381,10 +381,10 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                    .init(name: "Hotel", hillCategory: .munro, height: 500),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .make(name: "Hotel", hillCategory: .munro, height: 500),
                                 ]
                                 sut.fetch(
                                     data,
@@ -407,9 +407,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Echo", hillCategory: .munro, height: 10),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Echo", hillCategory: .munro, height: 10),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
                                     data,
@@ -432,8 +432,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
                                 ]
                                 sut.fetch(
                                     data,
@@ -458,11 +458,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: height descending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                .init(name: "India", hillCategory: .munro, height: 99),
-                                .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                .init(name: "Echo", hillCategory: .munro, height: 10),
+                                .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                .make(name: "India", hillCategory: .munro, height: 99),
+                                .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                .make(name: "Echo", hillCategory: .munro, height: 10),
                             ]
                             sut.fetch(
                                 data,
@@ -483,10 +483,10 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Hotel", hillCategory: .munro, height: 500),
-                                    .init(name: "Alpha", hillCategory: .munro, height: 100),
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "Hotel", hillCategory: .munro, height: 500),
+                                    .make(name: "Alpha", hillCategory: .munro, height: 100),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
                                     data,
@@ -509,9 +509,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
-                                    .init(name: "Echo", hillCategory: .munro, height: 10),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "Echo", hillCategory: .munro, height: 10),
                                 ]
                                 sut.fetch(
                                     data,
@@ -534,8 +534,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "India", hillCategory: .munro, height: 99),
-                                    .init(name: "Charlie", hillCategory: .munro, height: 75),
+                                    .make(name: "India", hillCategory: .munro, height: 99),
+                                    .make(name: "Charlie", hillCategory: .munro, height: 75),
                                 ]
                                 sut.fetch(
                                     data,
@@ -562,11 +562,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: name ascending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                                .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                .init(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                             ]
                             sut.fetch(
                                 data,
@@ -587,9 +587,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                    .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                    .init(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                    .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                    .make(name: "Juliet", hillCategory: .munroTop, height: 375),
                                 ]
                                 sut.fetch(
                                     data,
@@ -612,8 +612,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
                                     data,
@@ -636,7 +636,7 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
                                     data,
@@ -661,11 +661,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: name descending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                                .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                .init(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                             ]
                             sut.fetch(
                                 data,
@@ -686,9 +686,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                                    .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                    .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                    .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                                 ]
                                 sut.fetch(
                                     data,
@@ -711,8 +711,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                                 ]
                                 sut.fetch(
                                     data,
@@ -735,7 +735,7 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
                                     data,
@@ -760,11 +760,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: height ascending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                                .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                                .init(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                             ]
                             sut.fetch(
                                 data,
@@ -785,9 +785,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                    .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                    .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                    .make(name: "Delta", hillCategory: .munroTop, height: 1000),
                                 ]
                                 sut.fetch(
                                     data,
@@ -810,8 +810,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
                                     data,
@@ -834,7 +834,7 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
                                     data,
@@ -859,11 +859,11 @@ class MunroServiceSpec: QuickSpec {
                     context("Sort: height descending") {
                         beforeEach {
                             expected = [
-                                .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                                .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
-                                .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                .init(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                             ]
                             sut.fetch(
                                 data,
@@ -884,9 +884,9 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Delta", hillCategory: .munroTop, height: 1000),
-                                    .init(name: "Juliet", hillCategory: .munroTop, height: 375),
-                                    .init(name: "Foxtrot", hillCategory: .munroTop, height: 250),
+                                    .make(name: "Delta", hillCategory: .munroTop, height: 1000),
+                                    .make(name: "Juliet", hillCategory: .munroTop, height: 375),
+                                    .make(name: "Foxtrot", hillCategory: .munroTop, height: 250),
                                 ]
                                 sut.fetch(
                                     data,
@@ -909,8 +909,8 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
-                                    .init(name: "Bravo", hillCategory: .munroTop, height: 1),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Bravo", hillCategory: .munroTop, height: 1),
                                 ]
                                 sut.fetch(
                                     data,
@@ -933,7 +933,7 @@ class MunroServiceSpec: QuickSpec {
                         context("Filter: min max specified") {
                             beforeEach {
                                 expected = [
-                                    .init(name: "Golf", hillCategory: .munroTop, height: 34),
+                                    .make(name: "Golf", hillCategory: .munroTop, height: 34),
                                 ]
                                 sut.fetch(
                                     data,
