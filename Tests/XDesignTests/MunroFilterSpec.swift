@@ -56,63 +56,6 @@ class MunroFilterSpec: QuickSpec {
                         expect(actual) == data
                     }
                 }
-                
-                context("limit") {
-                    context("when limit is specified") {
-                        beforeEach {
-                            expected = [
-                                .make(name: "Alpha", hillCategory: .munro),
-                                .make(name: "Bravo", hillCategory: .munro),
-                            ]
-                            actual = Filter.byHillCategory(
-                                munros: data,
-                                hillCategory: .munro,
-                                limit: 2
-                            )
-                        }
-                        
-                        it("should return list of the first matching items up to the maximum limit") {
-                            expect(actual) == expected
-                        }
-                    }
-                    
-                    context("when limit is not specified") {
-                        beforeEach {
-                            expected = [
-                                .make(name: "Alpha", hillCategory: .munro),
-                                .make(name: "Bravo", hillCategory: .munro),
-                                .make(name: "Delta", hillCategory: .munro),
-                            ]
-                            actual = Filter.byHillCategory(
-                                munros: data,
-                                hillCategory: .munro
-                            )
-                        }
-                        
-                        it("should return complete list of the matching items") {
-                            expect(actual) == expected
-                        }
-                    }
-                    
-                    context("when specified limit is greater than the data range") {
-                        beforeEach {
-                            expected = [
-                                .make(name: "Alpha", hillCategory: .munro),
-                                .make(name: "Bravo", hillCategory: .munro),
-                                .make(name: "Delta", hillCategory: .munro),
-                            ]
-                            actual = Filter.byHillCategory(
-                                munros: data,
-                                hillCategory: .munro,
-                                limit: 10
-                            )
-                        }
-                        
-                        it("should return complete list of the matching items") {
-                            expect(actual) == expected
-                        }
-                    }
-                }
             }
             
             context("Filtering by height") {

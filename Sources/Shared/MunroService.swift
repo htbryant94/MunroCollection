@@ -41,9 +41,7 @@ public class MunroService {
         
         results = Filter.byHeight(
             munros: results,
-            min: minHeight,
-            max: maxHeight,
-            limit: nil
+            min: minHeight, max: maxHeight
         )
         
         switch sortType {

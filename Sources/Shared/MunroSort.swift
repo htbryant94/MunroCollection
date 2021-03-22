@@ -4,29 +4,21 @@ public struct MunroSort {
         case descending
     }
     
-    public static func byName(
-        munros: [Munro],
-        orderBy: Direction = .ascending,
-        limit: Int? = nil
-    ) -> [Munro] {
+    public static func byName(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
         switch orderBy {
         case .ascending:
-            return munros.sorted { $0.name < $1.name }.limit(limit ?? munros.count)
+            return munros.sorted { $0.name < $1.name }
         case .descending:
-            return munros.sorted { $0.name > $1.name }.limit(limit ?? munros.count)
+            return munros.sorted { $0.name > $1.name }
         }
     }
     
-    public static func byHeight(
-        munros: [Munro],
-        orderBy: Direction = .ascending,
-        limit: Int? = nil
-    ) -> [Munro] {
+    public static func byHeight(munros: [Munro], orderBy: Direction = .ascending) -> [Munro] {
         switch orderBy {
         case .ascending:
-            return munros.sorted { $0.height < $1.height }.limit(limit ?? munros.count)
+            return munros.sorted { $0.height < $1.height }
         case .descending:
-            return munros.sorted { $0.height > $1.height }.limit(limit ?? munros.count)
+            return munros.sorted { $0.height > $1.height }
         }
     }
 }

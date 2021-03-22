@@ -1,24 +1,10 @@
 public struct MunroFilter {
-    public static func byHillCategory(
-        munros: [Munro],
-        hillCategory: Munro.HillCategory?,
-        limit: Int? = nil
-    ) -> [Munro] {
-        guard let hillCategory = hillCategory else {
-            return munros.limit(limit ?? munros.count)
-        }
-        
-        return munros
-            .filter { $0.hillCategory == hillCategory }
-            .limit(limit ?? munros.count)
+    public static func byHillCategory(munros: [Munro], hillCategory: Munro.HillCategory?) -> [Munro] {
+        guard let hillCategory = hillCategory else { return munros }
+        return munros.filter { $0.hillCategory == hillCategory }
     }
     
-    public static func byHeight(
-        munros: [Munro],
-        min: Double?,
-        max: Double?,
-        limit: Int? = nil
-    ) -> [Munro] {
+    public static func byHeight(munros: [Munro], min: Double?, max: Double?) -> [Munro] {
         var results = munros
         
         if let min = min {
@@ -29,6 +15,6 @@ public struct MunroFilter {
             results = results.filter { $0.height <= max }
         }
         
-        return results.limit(limit ?? munros.count)
+        return results
     }
 }
